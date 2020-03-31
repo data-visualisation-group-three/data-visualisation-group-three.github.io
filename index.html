@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Group 3 Project</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="date" content="2020-03-31" scheme="YYYY-MM-DD">
+
+    <!-- Description and keywords -->
+    <meta name="description" content="Group 3's project for the Understanding Data Visualisation course at the University of Edinburgh">
+    <meta name="keywords" content="University of Edinburgh,Understanding Data Visualisation,Group 3,Project,Gun Rates,Gun Deaths">
+
+    <!-- Group Three -->
+    <meta name="author" content="Patrick Philipiec">
+    <meta name="author" content="Yuyu Shu">
+    <meta name="author" content="John Strachan">
+    <meta name="author" content="Jenny Tran">
+
+    <!-- D3 Data Visualisation library -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!-- jQuery utility library -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous">
+    </script>
+
+    <!-- Bootstrap JavaScript library -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous">
+    </script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <style>
+      header span.audienceLabel {
+        color: #999;
+	display: inline-block;
+        margin-left: 14px;	
+	padding-top: 8px;
+      }
+      header a.nav-link {
+        color: #666;
+      }
+      header a.nav-link:hover {
+        color: #999;
+      }
+      footer input.slider {
+        width: 1015px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <!-- TOP NAVIGATION: Audience links -->
+      <nav class="navbar sticky-top navbar-dark bg-dark">
+        <div class="container">
+          <div class="row">
+            <div class="col-">
+              <span class="audienceLabel">
+	        Audience:
+              </span>
+	    </div>
+            <div class="col-">
+	      <a class="nav-link" href="#">Gun owners</a>
+	    </div>
+            <div class="col-">
+              <a class="nav-link" href="#">Voters</a>
+            </div>
+            <div class="col-">
+              <a class="nav-link" href="#">Teachers</a>
+            </div>
+            <div class="col-">
+              <a class="nav-link" href="#">Students</a>
+            </div>
+           </div>
+	</div>
+      </nav>
+
+      <!-- TOP NAVIGATION: Title and subtitle -->    
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Group 3 Project</h1>
+          <p class="lead subTitle">If Switzerland had the same rate of gun ownership as the United States of America ...</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN BODY -->    
+    <main>
+      <div class="container">
+        <!-- D3 SVG container -->   
+        <svg class="svg">
+          <g class="charts">
+            <rect class="american"></rect>
+            <rect class="swiss"></rect>
+            <rect class="swissOverlay"></rect>
+          </g>
+        </svg>
+      </div>
+    </main>
+
+    <footer>
+      <!-- Slider -->   
+      <div class="container">
+        <input class="form-control slider" default="150" min="0" max="300" type="range" width="900px">
+      </div>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container"></div>
+      </div>
+    </footer>
+
+    <script>
+      // Find the D3 SVG element and define its height and width.
+      var svg = d3.select("svg")
+                  .attr("height", "500px")
+                  .attr("width", "1015px");
+
+      // Append a DEFS configuration element,
+      // which will be used to load the flag images.
+      var defs = svg.append('svg:defs');
+            
+      // Load the American flag image into the DEFS element.
+      defs.append('svg:pattern')
+          .attr('id', 'flag-american')
+          .attr('patternUnits', 'userSpaceOnUse')
+          .attr('width', '1024px')
+          .attr('height', '680px')
+          .append('svg:image')
+          .attr('xlink:href', 'https://i.pinimg.com/originals/10/95/66/10956627a25f274182255997210986ff.jpg')
+          .attr('x', 0)
+          .attr('y', 0)
+          .attr('width', "1024px")
+          .attr('height', "680px");
+
+      // Load the Swiss flag image into the DEFS element.
+      defs.append('svg:pattern')
+          .attr('id', 'flag-swiss')
+          .attr('patternUnits', 'userSpaceOnUse')
+          .attr('width', '1500px')
+          .attr('height', '500px')
+          .append('svg:image')
+          .attr('xlink:href', 'https://wallpaperaccess.com/full/1303347.jpg')
+          .attr('x', 0)
+          .attr('y', 0)
+          .attr('width', "1500px")
+          .attr('height', "500px");
+
+      // Find and define the American flag element.
+      var american = d3.select("rect.american")
+          .attr("height", "500px")
+          .attr("width", "500px")
+          .attr("x", "5px")
+          .attr("y", "5px")
+          .style("fill", "url(#flag-american)");
+
+      // Find and define the Swiss flag element.
+      var swiss = d3.select("rect.swiss")
+          .attr("height", "500px")
+          .attr("width", "500px")
+          .attr("x", "520px")
+          .attr("y", "5px")
+          .style("fill", "url(#flag-swiss)");
+
+      // Find and define the Swiss 'overlay' element.
+      var swissOverlay = d3.select("rect.swissOverlay")
+          .attr("height", "0px")
+          .attr("width", "500px")
+          .attr("x", "520px")
+          .attr("y", "5px")
+          .style("fill", "white")
+          .style("transition", "height 2s");
+
+      // Create a 'callback' function, which will
+      // position the 'overlay' element over the 
+      // Swiss flag in relation to the current
+      // position of the slider.
+      var changeSwissSize = (sliderPosition) => {
+      	swissOverlay.attr("height", sliderPosition);
+      };
+
+      // Associate the 'changeSwissSize' callback
+      // with the slider.
+      d3.select("input.slider").on("input", function() {
+	changeSwissSize(this.value);
+      }); 
+    </script>
+  </body>
+</html>
