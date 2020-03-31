@@ -39,6 +39,9 @@
 
     <!-- Custom CSS -->
     <style>
+      .hidden {
+        display: none;
+      }
       header span.audienceLabel {
         color: #999;
 	display: inline-block;
@@ -50,6 +53,7 @@
       }
       header a.nav-link:hover {
         color: #999;
+	cursor: pointer; 
       }
       footer input.slider {
         width: 1015px;
@@ -69,16 +73,16 @@
               </span>
 	    </div>
             <div class="col-">
-	      <a class="nav-link" href="#">Gun owners</a>
+	      <a class="nav-link" data-audience-type="gun-owners">Gun owners</a>
 	    </div>
             <div class="col-">
-              <a class="nav-link" href="#">Voters</a>
+              <a class="nav-link" data-audience-type="voters">Voters</a>
             </div>
             <div class="col-">
-              <a class="nav-link" href="#">Teachers</a>
+              <a class="nav-link" data-audience-type="teachers">Teachers</a>
             </div>
             <div class="col-">
-              <a class="nav-link" href="#">Students</a>
+              <a class="nav-link" data-audience-type="students">Students</a>
             </div>
            </div>
 	</div>
@@ -88,7 +92,7 @@
       <div class="jumbotron jumbotron-fluid">
         <div class="container">
           <h1 class="display-4">Group 3 Project</h1>
-          <p class="lead subTitle">If Switzerland had the same rate of gun ownership as the United States of America ...</p>
+          <p class="lead subTitle">If Switzerland had the same rate of <b>gun ownership</b> as the United States of America ...</p>
         </div>
       </div>
     </header>
@@ -113,7 +117,28 @@
         <input class="form-control slider" default="150" min="0" max="300" type="range" width="900px">
       </div>
       <div class="jumbotron jumbotron-fluid">
-        <div class="container"></div>
+        <div class="container">
+
+      	  <!-- Additional info: Gun ownsers -->   
+          <div class="row audience-accordion gun-owners">
+            Additional information and charts for gun owners.
+          </div>
+
+      	  <!-- Additional info: Voters -->   
+          <div class="row audience-accordion voters">
+            Additional information and charts for voters.
+          </div>
+
+      	  <!-- Additional info: Teachers -->   
+          <div class="row audience-accordion teachers">
+            Additional information and charts for teachers.
+          </div>
+
+      	  <!-- Additional info: Students -->   
+          <div class="row audience-accordion students">
+            Additional information and charts for students.
+          </div>
+	</div>
       </div>
     </footer>
 
@@ -184,6 +209,12 @@
       // position of the slider.
       var changeSwissSize = (sliderPosition) => {
       	swissOverlay.attr("height", sliderPosition);
+
+        if (sliderPosition > 150) {
+	  d3.select(".subTitle").text("Gun deaths in America and Switzerland");
+        } else {
+	  d3.select(".subTitle").text("Gun ownership in America and Switzerland");
+        }
       };
 
       // Associate the 'changeSwissSize' callback
@@ -191,6 +222,16 @@
       d3.select("input.slider").on("input", function() {
 	changeSwissSize(this.value);
       }); 
+
+      // Handle links on the 'audience' links
+      d3.selectAll("a.nav-link").on("click", function() {
+	var audienceType = $(this).data("audience-type");
+        $("div.audience-accordion").hide();
+        $(`div.audience-accordion.${audienceType}`).show();
+      }); 
+
+      // Initial state of the 'audience' accordion
+      $("div.audience-accordion").hide();
     </script>
   </body>
 </html>
