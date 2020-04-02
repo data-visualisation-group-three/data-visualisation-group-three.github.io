@@ -37,7 +37,8 @@
     <!-- Custom CSS -->
     <link href="./styles.2.css">
   </head>
-  <body>
+	
+ <body>
     <header>
       <!-- TOP NAVIGATION: Audience links -->
       <nav class="navbar sticky-top navbar-dark bg-dark">
@@ -98,56 +99,60 @@
         <div class="container">
 
       	  <!-- Additional info: Gun ownsers -->   
-          <div class="row audience-accordion gun-owners">
-            Additional information and charts for gun owners.
+          <div id="audience-gun-owners" class="row audience-accordion gun-owners">
+            <div class="info">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+		sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+		Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+		Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+	    </div>
+            <div class="audience-chart">
+		XXXX
+            </div>
           </div>
 
       	  <!-- Additional info: Voters -->   
-          <div class="row audience-accordion voters">
-            Additional information and charts for voters.
+          <div id="audience-voters" class="row audience-accordion voters">
+            <div class="info">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+		sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+		Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+		Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+	    </div>
+            <div class="audience-chart">
+            </div>
           </div>
 
       	  <!-- Additional info: Teachers -->   
-          <div class="row audience-accordion teachers">
-            Additional information and charts for teachers.
+          <div id="audience-teachers" class="row audience-accordion teachers">
+            <div class="info">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+		sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+		Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+		Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+	    </div>
+            <div class="audience-chart">
+            </div>
           </div>
 
       	  <!-- Additional info: Students -->   
-          <div class="row audience-accordion students">
-            Additional information and charts for students.
+          <div id="audience-students" class="row audience-accordion students">
+            <div class="info">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+		sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+		Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+		Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+	    </div>
+            <div class="audience-chart">
+            </div>
           </div>
 	</div>
       </div>
     </footer>
   </body>
-  <script>
-const sections = [...document.querySelectorAll("div#gun-deaths, div#gun-owners")];
-
-let options = {
-  rootMargin: "0px",
-  threshold: 0.25
-};
-
-const callback = (entries, observer) => {
-  entries.forEach(entry => {
-        const { target } = entry;
-        console.log(entry, target)
-        
-        if (entry.intersectionRatio >= 0.25) {
-            target.classList.add("is-visible");
-        } else {
-            target.classList.remove("is-visible");
-        }
-  });
-};
-
-const observer = new IntersectionObserver(callback, options);
-
-sections.forEach((section, index) => {
-  observer.observe(section);
-});
-
-      // Initial state of the 'audience' accordion
-      $("div.audience-accordion").hide();
-  </script>
+  <script src="helpers.2.js"></script>
 </html>
