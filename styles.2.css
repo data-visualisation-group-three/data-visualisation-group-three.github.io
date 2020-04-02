@@ -1,0 +1,184 @@
+
+
+/* COMMON COLOURS */
+
+ :root {
+  --colour-lightest-grey: #F5F5F5;
+  --colour-light-grey: #e9ecef;
+  --colour-mid-grey: #888888;
+  --colour-dark-grey: #505050;
+  --colour-darkest-grey: #404040;
+  --opacity-initial: 0;
+  --opacity-visible: 1;
+  --transition-seconds: 3s;
+}
+
+
+/* SHARED CLASSES */
+
+.chart {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.hidden {
+  display: none;
+}
+
+.is-visible {
+  opacity: 1;
+}
+
+.shape-rectangle {
+  height: 80vh;
+  width: 70vw;
+}
+
+.shape-square {
+  height: 80vh;
+  width: 70vw;
+}
+
+.vertical-space {
+  height: 80vh;
+  width: 0.5vw;
+}
+
+
+/* SHARED CLASSES: IMAGES */
+
+.america {
+  background: url("https://i.pinimg.com/originals/10/95/66/10956627a25f274182255997210986ff.jpg");
+  background-size: cover;
+}
+
+.switzerland {
+  background: url("https://wallpaperaccess.com/full/1303347.jpg");
+  background-size: cover;
+}
+
+
+/* PRIMARY ELEMENT STYLES */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  font-family: 'Helvetica', sans-serif;
+  background-color: var(--colour-lightest-grey);
+}
+
+header a.nav-link {
+  color: var(--colour-mid-grey);
+}
+
+header a.nav-link:hover {
+  color: var(--colour-light-grey);
+  cursor: pointer;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  background-color: var(--colour-light-grey);
+  flex-shrink: 0;
+}
+
+
+/* CHARTS CONTAINER */
+
+#charts-container {
+  border: 1px var(--colour-darkest-grey) solid;
+  border-radius: 4px;
+  margin-bottom: 5vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-snap-points-y: repeat(100%);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#charts-container::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+
+/* GUN OWNER AND GUN DEATHS CHARTS */
+
+#gun-owners {
+  background-color: var(--colour-dark-grey);
+}
+
+#gun-deaths {
+  background-color: var(--colour-light-grey);
+}
+
+#gun-owners div.america,
+#gun-owners div.switzerland,
+#gun-deaths div.america,
+#gun-deaths div.switzerland {
+  background-color: var(--colour-light-grey);
+  height: 0%;
+  opacity: var(--opacity-initial);
+  transition: background-color var(--transition-seconds) ease;
+  transition: height var(--transition-seconds) ease;
+  transition: opacity var(--transition-seconds) ease;
+}
+
+
+/* GUN OWNER AND GUN DEATHS CHARTS WHEN VISIBLE */
+
+#gun-owners.is-visible div.america,
+#gun-owners.is-visible div.switzerland {
+  height: 100%;
+  background-color: var(--colour-mid-grey);
+  opacity: 1;
+}
+
+#gun-deaths.is-visible div.america {
+  background-color: var(--colour-dark-grey);
+  height: 100%;
+  opacity: 1;
+}
+
+#gun-deaths.is-visible div.switzerland {
+  height: 35%;
+  background-color: var(--colour-dark-grey);
+  opacity: var(--opacity-visible);
+}
+
+
+/* GUN OWNERS VERTICAL SPACE */
+
+#gun-owners div.vertical-space {
+  background-color: var(--colour-mid-grey);
+  transition: background-color var(--transition-seconds) ease;
+}
+
+#gun-owners.is-visible div.vertical-space {
+  background-color: var(--colour-light-grey)
+}
+
+
+/* GUN DEATHS VERTICAL SPACE */
+
+#gun-deaths div.vertical-space {
+  background-color: var(--colour-dark-grey);
+  transition: background-color var(--transition-seconds) ease;
+}
+
+#gun-deaths.is-visible div.vertical-space {
+  background-color: var(--colour-light-grey)
+}
+
