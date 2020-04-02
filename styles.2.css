@@ -29,6 +29,12 @@
   width: 40%;
 }
 
+.audience-accordion .audience-chart img {
+	 margin-top: 4vh;
+	 max-width: 100%;
+	 height: auto;
+}
+
 .chart {
   display: flex;
   flex-direction: row;
