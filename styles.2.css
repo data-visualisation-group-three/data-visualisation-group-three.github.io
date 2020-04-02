@@ -1,7 +1,4 @@
-
-
 /* COMMON COLOURS */
-
  :root {
   --colour-lightest-grey: #F5F5F5;
   --colour-light-grey: #e9ecef;
@@ -15,6 +12,22 @@
 
 
 /* SHARED CLASSES */
+.audience-accordion {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.audience-accordion .info {
+  text-align: justify;
+  text-justify: inter-word;
+  width: 40%;
+}
+
+.audience-accordion .audience-chart {
+  width: 40%;
+}
 
 .chart {
   display: flex;
@@ -47,7 +60,6 @@
 
 
 /* SHARED CLASSES: IMAGES */
-
 .america {
   background: url("https://i.pinimg.com/originals/10/95/66/10956627a25f274182255997210986ff.jpg");
   background-size: cover;
@@ -60,7 +72,6 @@
 
 
 /* PRIMARY ELEMENT STYLES */
-
 html,
 body {
   height: 100%;
@@ -95,7 +106,6 @@ footer {
 
 
 /* CHARTS CONTAINER */
-
 #charts-container {
   border: 1px var(--colour-darkest-grey) solid;
   border-radius: 4px;
@@ -115,7 +125,6 @@ footer {
 
 
 /* GUN OWNER AND GUN DEATHS CHARTS */
-
 #gun-owners {
   background-color: var(--colour-dark-grey);
 }
@@ -138,7 +147,6 @@ footer {
 
 
 /* GUN OWNER AND GUN DEATHS CHARTS WHEN VISIBLE */
-
 #gun-owners.is-visible div.america,
 #gun-owners.is-visible div.switzerland {
   height: 100%;
@@ -160,7 +168,6 @@ footer {
 
 
 /* GUN OWNERS VERTICAL SPACE */
-
 #gun-owners div.vertical-space {
   background-color: var(--colour-mid-grey);
   transition: background-color var(--transition-seconds) ease;
@@ -172,7 +179,6 @@ footer {
 
 
 /* GUN DEATHS VERTICAL SPACE */
-
 #gun-deaths div.vertical-space {
   background-color: var(--colour-dark-grey);
   transition: background-color var(--transition-seconds) ease;
@@ -181,4 +187,3 @@ footer {
 #gun-deaths.is-visible div.vertical-space {
   background-color: var(--colour-light-grey)
 }
-
